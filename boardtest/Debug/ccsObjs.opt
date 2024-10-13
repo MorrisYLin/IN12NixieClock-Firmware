@@ -1,5 +1,0 @@
-"./main.obj"
-"./tm4c1294ncpdt_startup_ccs.obj"
-"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib"
-"../tm4c1294ncpdt.cmd"
--llibc.a
