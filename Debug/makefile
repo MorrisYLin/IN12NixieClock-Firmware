@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./init.obj" \
 "./main.obj" \
 "./tm4c1294ncpdt_startup_ccs.obj" \
 "C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
@@ -143,8 +144,8 @@ Nixie_Clock.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c1294ncpdt_startup_ccs.obj" 
-	-$(RM) "main.d" "tm4c1294ncpdt_startup_ccs.d" 
+	-$(RM) "init.obj" "main.obj" "tm4c1294ncpdt_startup_ccs.obj" 
+	-$(RM) "init.d" "main.d" "tm4c1294ncpdt_startup_ccs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
