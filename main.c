@@ -23,7 +23,12 @@
 //*****************************************************************************
 #pragma once
 #include "init.h"
+#include "bulb_functions.h"
+#include "ports_pins_config.h"
+
+
 #include <stdint.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include "inc/hw_memmap.h"
 #include "driverlib/debug.h"
@@ -61,60 +66,19 @@ __error__(char *pcFilename, uint32_t ui32Line)
 int main(void)
 {
     volatile uint32_t ui32Loop;
+    init();
+    bulb_off(0);
+    bulb_off(1);
+    bulb_off(2);
+    bulb_off(3);
+    bulb_off(4);
+    bulb_off(5);
+
+    bulb_displayNumber(0,0);
+    bulb_displayNumber(1,1);
+    bulb_displayNumber(2,2);
 
 
-
-
-
-                                //msb --> //lsb
-    int numsInBinary [10][4] = {{0,0,0,0},
-                                {0,0,0,1},
-                                {0,0,1,0},
-                                {0,0,1,1},
-                                {0,1,0,0},
-                                {0,1,0,1},
-                                {0,1,1,0},
-                                {0,1,1,1},
-                                {1,0,0,0},
-                                {1,0,0,1}
-    };
-    int i = 7;
-
-    while(1)
-   {
-        //
-        // Turn on the LED.
-        //
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
-
-        GPIOPinWrite(GPIO_PORTK_BASE, GPIO_PIN_1, numsInBinary[i][3]<<1); //b0 k1 lsb
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, numsInBinary[i][2]<<4); //b1 E4
-        GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_5, numsInBinary[i][1]<<5); //b2 E5
-        GPIOPinWrite(GPIO_PORTK_BASE, GPIO_PIN_0, numsInBinary[i][0]<<0); //b3 k0 msb
-
-
-
-        // Delay for a bit.
-        //
-        for(ui32Loop = 0; ui32Loop < 2000000; ui32Loop++)
-        {
-        }
-
-        //
-        // Turn off the LED.
-        //
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x0);
-
-        //
-        // Delay for a bit.
-        //
-        for(ui32Loop = 0; ui32Loop < 2000000; ui32Loop++)
-        {
-        }
-        i = (i+1)%10;
-
-
-    }
-
+    return 0;
 
 }

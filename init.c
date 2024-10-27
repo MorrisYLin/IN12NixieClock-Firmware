@@ -31,42 +31,6 @@ int init(){
      {
      }
 
-      int bulb0_PORTS[4] = {GPIO_PORTK_BASE, GPIO_PORTE_BASE, GPIO_PORTE_BASE, GPIO_PORTK_BASE};
-      int bulb0_PINS[4] = {GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_0};
-
-      int bulb1_PORTS[4] = {GPIO_PORTD_BASE, GPIO_PORTK_BASE, GPIO_PORTK_BASE, GPIO_PORTD_BASE};
-      int bulb1_PINS[4] = {GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_5};
-
-      int bulb2_PORTS[4] = {GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE};
-      int bulb2_PINS[4] = {GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_1, GPIO_PIN_0};
-
-      int bulb3_PORTS[4] = {GPIO_PORTF_BASE, GPIO_PORTL_BASE, GPIO_PORTB_BASE, GPIO_PORTB_BASE};
-      int bulb3_PINS[4] = {GPIO_PIN_2, GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3};
-
-      int bulb4_PORTS[4] = {GPIO_PORTJ_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE};
-      int bulb4_PINS[4] = {GPIO_PIN_0, GPIO_PIN_3, GPIO_PIN_4, GPIO_PIN_5};
-
-      int bulb5_PORTS[4] = {GPIO_PORTM_BASE, GPIO_PORTJ_BASE, GPIO_PORTM_BASE, GPIO_PORTM_BASE};
-      int bulb5_PINS[4] = {GPIO_PIN_5, GPIO_PIN_1, GPIO_PIN_7, GPIO_PIN_6};
-
-      int bulb_PORTS[6][4] = {{GPIO_PORTK_BASE, GPIO_PORTE_BASE, GPIO_PORTE_BASE, GPIO_PORTK_BASE},
-                             {GPIO_PORTD_BASE, GPIO_PORTK_BASE, GPIO_PORTK_BASE, GPIO_PORTD_BASE},
-                             {GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE},
-                             {GPIO_PORTJ_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE},
-                             {GPIO_PORTM_BASE, GPIO_PORTJ_BASE, GPIO_PORTM_BASE, GPIO_PORTM_BASE}
-                             };
-
-      int bulb_PINS[6][4] = {{GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_0},
-                              {GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_5},
-                              {GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_1, GPIO_PIN_0},
-                              {GPIO_PIN_2, GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3},
-                              {GPIO_PIN_0, GPIO_PIN_3, GPIO_PIN_4, GPIO_PIN_5},
-                              {GPIO_PIN_5, GPIO_PIN_1, GPIO_PIN_7, GPIO_PIN_6}
-                              };
-
-
-
-
 
 
 
