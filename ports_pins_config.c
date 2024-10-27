@@ -1,0 +1,47 @@
+/*
+ * ports_pins_config.c
+ *
+ *  Created on: Oct 26, 2024
+ *      Author: jacob
+ */
+
+#include "ports_pins_config.h"
+
+      bulb0_PORTS[4] = {GPIO_PORTK_BASE, GPIO_PORTE_BASE, GPIO_PORTE_BASE, GPIO_PORTK_BASE};
+      bulb0_PINS[4] = {GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_0};
+
+
+      bulb1_PORTS[4] = {GPIO_PORTD_BASE, GPIO_PORTK_BASE, GPIO_PORTK_BASE, GPIO_PORTD_BASE};
+      bulb1_PINS[4] = {GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_5};
+
+      bulb2_PORTS[4] = {GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE};
+      bulb2_PINS[4] = {GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_1, GPIO_PIN_0};
+
+      bulb3_PORTS[4] = {GPIO_PORTF_BASE, GPIO_PORTL_BASE, GPIO_PORTB_BASE, GPIO_PORTB_BASE};
+      bulb3_PINS[4] = {GPIO_PIN_2, GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3};
+
+      bulb4_PORTS[4] = {GPIO_PORTJ_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE};
+      bulb4_PINS[4] = {GPIO_PIN_0, GPIO_PIN_3, GPIO_PIN_4, GPIO_PIN_5};
+
+      bulb5_PORTS[4] = {GPIO_PORTM_BASE, GPIO_PORTJ_BASE, GPIO_PORTM_BASE, GPIO_PORTM_BASE};
+      bulb5_PINS[4] = {GPIO_PIN_5, GPIO_PIN_1, GPIO_PIN_7, GPIO_PIN_6};
+
+      bulb_PORTS[6][4] = {{GPIO_PORTK_BASE, GPIO_PORTE_BASE, GPIO_PORTE_BASE, GPIO_PORTK_BASE},
+                          {GPIO_PORTD_BASE, GPIO_PORTK_BASE, GPIO_PORTK_BASE, GPIO_PORTD_BASE},
+                          {GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE, GPIO_PORTD_BASE},
+                          {GPIO_PORTF_BASE, GPIO_PORTL_BASE, GPIO_PORTB_BASE, GPIO_PORTB_BASE},
+                          {GPIO_PORTJ_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE, GPIO_PORTP_BASE},
+                          {GPIO_PORTM_BASE, GPIO_PORTJ_BASE, GPIO_PORTM_BASE, GPIO_PORTM_BASE},
+                          };
+
+      bulb_PINS[6][4] = {{GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_0},
+                         {GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_5},
+                         {GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_1, GPIO_PIN_0},
+                         {GPIO_PIN_2, GPIO_PIN_4, GPIO_PIN_2, GPIO_PIN_3},
+                         {GPIO_PIN_0, GPIO_PIN_3, GPIO_PIN_4, GPIO_PIN_5},
+                         {GPIO_PIN_5, GPIO_PIN_1, GPIO_PIN_7, GPIO_PIN_6}
+                         };
+
+
+
+
