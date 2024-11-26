@@ -1,2 +1,26 @@
-/.metadata/
-/Debug/
+# Ignore Debug and Release build directories
+Debug/
+Release/
+
+# Ignore temporary and auto-generated files
+*.xdchelp
+
+# Ignore configuration and environment-specific folders
+.config/
+.launches/
+
+# Ignore common temporary/editor-specific files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.log
+*.DS_Store
+Thumbs.db
+
+# Ignore files created by version control tools
+*.orig
+
+# Ignore Code Composer Studio workspace settings (not project-specific)
+.metadata/
+
