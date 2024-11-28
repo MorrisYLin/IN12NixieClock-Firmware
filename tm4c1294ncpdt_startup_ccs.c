@@ -54,7 +54,8 @@ extern uint32_t __STACK_TOP;
 // External declarations for the interrupt handlers used by the application.
 //
 //*****************************************************************************
-// To be added by user
+extern void SysTickHandler(void);	// Heartbeat LED
+extern void RTCHandler(void);	// Real-time clock
 
 //*****************************************************************************
 //
@@ -82,7 +83,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // Debug monitor handler
     0,                                      // Reserved
     IntDefaultHandler,                      // The PendSV handler
-    IntDefaultHandler,                      // The SysTick handler
+    SysTickHandler,                      	// The SysTick handler
     IntDefaultHandler,                      // GPIO Port A
     IntDefaultHandler,                      // GPIO Port B
     IntDefaultHandler,                      // GPIO Port C
@@ -183,7 +184,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // LCD Controller 0
     IntDefaultHandler,                      // Timer 6 subtimer A
     IntDefaultHandler,                      // Timer 6 subtimer B
-    IntDefaultHandler,                      // Timer 7 subtimer A
+    RTCHandler,                      		// Timer 7 subtimer A
     IntDefaultHandler,                      // Timer 7 subtimer B
     IntDefaultHandler,                      // I2C6 Master and Slave
     IntDefaultHandler,                      // I2C7 Master and Slave

@@ -5,19 +5,27 @@
  *      Author: jacob
  */
 
-#ifndef INIT_H_
-#define INIT_H_
+#pragma once
 
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_memmap.h"
-#include "driverlib/debug.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
+#include "driverlib/systick.h"
+#include "driverlib/timer.h"
+#include "driverlib/interrupt.h"
+#include "driverlib/hibernate.h"
 
-int init();
+/* Enables all needed GPIO ports and sets in/out
+ */
+int initPortPins();
 
+/* Initializes the 32.786 kHz oscillator used as the source for the RTC
+ * Must enable hibernate module since oscillator is attached to that
+ */
+int initOscillator();
 
-
-
-#endif /* INIT_H_ */
+/* Initializes all timers and other interrupts
+ */
+int initInterrupts();

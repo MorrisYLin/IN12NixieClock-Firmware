@@ -1,31 +1,7 @@
-//*****************************************************************************
-//
-// blinky.c - Simple example to blink the on-board LED.
-//
-// Copyright (c) 2013-2020 Texas Instruments Incorporated.  All rights reserved.
-// Software License Agreement
-//
-// Texas Instruments (TI) is supplying this software for use solely and
-// exclusively on TI's microcontroller products. The software is owned by
-// TI and/or its suppliers, and is protected under applicable copyright
-// laws. You may not combine this software with "viral" open-source
-// software in order to form a larger program.
-//
-// THIS SOFTWARE IS PROVIDED "AS IS" AND WITH ALL FAULTS.
-// NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT
-// NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. TI SHALL NOT, UNDER ANY
-// CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-// DAMAGES, FOR ANY REASON WHATSOEVER.
-//
-// This is part of revision 2.2.0.295 of the EK-TM4C1294XL Firmware Package.
-//
-//*****************************************************************************
 #pragma once
 #include "init.h"
 #include "bulb_functions.h"
 #include "ports_pins_config.h"
-
 
 #include <stdint.h>
 #include <stdio.h>
@@ -34,16 +10,6 @@
 #include "driverlib/debug.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
-
-//*****************************************************************************
-//
-//! \addtogroup example_list
-//! <h1>Blinky (blinky)</h1>
-//!
-//! A very simple example that blinks the on-board LED using direct register
-//! access.
-//
-//*****************************************************************************
 
 //*****************************************************************************
 //
@@ -60,25 +26,68 @@ __error__(char *pcFilename, uint32_t ui32Line)
 
 //*****************************************************************************
 //
-// Blink the on-board LED.
+// main loop and initialization code
 //
 //*****************************************************************************
-int main(void)
-{
-    volatile uint32_t ui32Loop;
-    init();
-    bulb_off(0);
-    bulb_off(1);
-    bulb_off(2);
-    bulb_off(3);
-    bulb_off(4);
-    bulb_off(5);
+volatile uint32_t secondsRTC = 0; // 1 second incrementer for RTC
 
-    bulb_displayNumber(0,0);
-    bulb_displayNumber(1,1);
-    bulb_displayNumber(2,2);
+int main(void) {
+	// Port and power initialization
+	initPortPins();
+	initOscillator();
+	initInterrupts();
+	bulb_power_on();
 
+	// Main loop
 
-    return 0;
+	uint32_t secondsRTCold = 0;
 
+	while (1) {
+		secondsRTC = HibernateRTCGet();
+
+		if (secondsRTCold != secondsRTC) {
+			for (int i = 0; i < 6; i++) {
+				uint8_t digit = secondsRTC;
+				for (int j = 0; j < i; j++) {
+					digit /= 10;
+				}
+				digit = digit % 10;
+				bulb_displayNumber(i, digit);
+			}
+			secondsRTCold = secondsRTC;
+		}
+	}
+
+// Main loop for testing bulb, bulb driver circuits, and bulb api
+// Cycles through 0, 1, 2, 3, ... , 9, off
+//	while (1) {
+//		for (int i = 0; i <= 10; i++) {
+//			for (int j = 0; j < 6; j++) {
+//				bulb_displayNumber(j, i);
+//			}
+//			for (int k = 0; k < 1500000; k++) {
+//			}
+//		}
+//	}
+
+	return 0;
+}
+
+//*****************************************************************************
+//
+// Interrupt Service Routines
+// Vector table & ISR function prototypes kept in tm4c1294ncpdt_startup_ccs.c
+//
+//*****************************************************************************
+void SysTickHandler(void) {
+//	static uint8_t light = 0xFF;
+//	GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, light);
+//	light = ~light;
+}
+
+void RTCHandler(void) {
+	TimerIntClear(TIMER7_BASE, TIMER_RTC_MATCH);	//FINISH THIS not 0
+	static uint8_t light = 0xFF;
+	GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, light);
+	light = ~light;
 }
