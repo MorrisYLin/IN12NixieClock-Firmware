@@ -13,6 +13,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/hibernate.h"
+#include "inc/uart.h"
 
 //*****************************************************************************
 //
@@ -40,6 +41,22 @@ int main(void) {
 	initOscillator();
 	initInterrupts();
 	bulb_power_on();
+    // Enable the UART module
+    UARTEnable(UART4_BASE);
+    UARTConfigSetExpClk(UART4_BASE, 16000000,
+                        115200, UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE);
+
+
+    // Set the FIFO level to trigger interrupt when receive FIFO is 1/8 full
+    UARTFIFOLevelSet(UART4_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);
+
+    // Enable the receive interrupt
+    UARTIntEnable(UART4_BASE, UART_INT_RX);
+
+    // Register the interrupt handler
+    UARTIntRegister(UART4_BASE, UARTHandler);
+    IntEnable(INT_UART4);
+
 
 	colon_display(0xFF);
 
