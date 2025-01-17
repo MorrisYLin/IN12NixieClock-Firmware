@@ -4,12 +4,16 @@
  *  Created on: Jan 5, 2025
  *      Author: mlin
  */
-#include "display.h"
+#include <clock.h>
 
-static uint8_t digit[6] = {0, 0, 0, 0, 2, 1};
+static uint8_t digit[6] = { 0, 0, 0, 0, 0, 0 };
 static uint8_t colon = 0x0F;
 
-static uint8_t hour = 12;
+static uint32_t year = 2025;
+static uint8_t month = 1;
+static uint8_t day = 1;
+
+static uint8_t hour = 0;
 static uint8_t min = 0;
 static uint8_t sec = 0;
 
@@ -19,18 +23,25 @@ void RTCHandler(void) {
 	GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, light);
 	light = ~light;
 
-	updateTime(HibernateRTCGet());
+	updateTime();
 
 	HibernateRTCMatchSet(0, HibernateRTCGet() + 1);
 }
 
-void updateTime(uint32_t RTCCount) {
-	RTCCount = RTCCount % 86400;	// Limit to 24hrs, 0 to 86400 sec
-	sec = RTCCount % 60;
-	RTCCount /= 60;
-	min = RTCCount % 60;
-	RTCCount /= 60;
-	hour = RTCCount % 60;
+void updateTime() {
+	sec++;
+
+	if (sec == 60) {
+		min++;
+		sec = 0;
+	}
+	if (min == 60) {
+		hour++;
+		min = 0;
+	}
+	if (hour == 24) {
+		hour = 0;
+	}
 
 	digit[0] = sec % 10;
 	digit[1] = sec / 10;

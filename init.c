@@ -6,6 +6,7 @@
  */
 #pragma once
 #include "init.h"
+#include "ports_pins_config.h"
 
 int initPortPins() {
 	// HVen (boost converter enable)
@@ -115,6 +116,16 @@ int initPortPins() {
 	GPIOPinWrite(GPIO_PORTJ_BASE, GPIO_PIN_1, GPIO_PIN_1);
 	GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_7, GPIO_PIN_7);
 	GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_6, GPIO_PIN_6);
+
+	//Colon init
+	for (int i = 0; i < 4; i++) {
+		GPIOPinTypeGPIOOutput(colon_PORTS[i], colon_PINS[i]);
+	}
+
+	//Colon off
+	for (int i = 0; i < 4; i++) {
+		GPIOPinWrite(colon_PORTS[i], colon_PINS[i], colon_PINS[i]);
+	}
 
 	return 0;
 }

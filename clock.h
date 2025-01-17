@@ -12,6 +12,6 @@
 #include "bulb_functions.h"
 #include "driverlib/hibernate.h"
 
-void updateTime(uint32_t RTCCount);
+void updateTime();
 uint8_t getDigit(int digNum);
 void RTCHandler(void);

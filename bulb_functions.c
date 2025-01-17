@@ -33,7 +33,11 @@ int bulb_displayNumber(uint8_t bulbNum, uint8_t displayNum) {
 }
 
 void colon_display(uint8_t colon) {
-	//ADD IN PORTS PIN CONFIG FOR COLON PINS
+	for (int decoderPin = 0; decoderPin < 4; decoderPin++) {
+		int bit = (colon >> decoderPin) & 0x01;
+		GPIOPinWrite(colon_PORTS[decoderPin], colon_PINS[decoderPin],
+				bit ? colon_PINS[decoderPin] : 0);
+	}
 }
 
 int displayNumber(uint32_t num) {

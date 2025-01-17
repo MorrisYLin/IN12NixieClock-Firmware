@@ -45,7 +45,6 @@ int bulb_displayNumber(uint8_t bulbNum, uint8_t displayNum);
  * Each dot corresponds to one bit, dots 0-3 to bits 0-3 respectively.
  */
 void colon_display(uint8_t colon);
-// ADD IN PORTS PIN CONFIG FOR COLONS
 
 /* Displays a given number across all 6 tubes.
  * If number is too small leading 0s appended, too large truncated.

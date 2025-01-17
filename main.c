@@ -1,9 +1,8 @@
 #pragma once
+#include <clock.h>
 #include "init.h"
 #include "bulb_functions.h"
 #include "ports_pins_config.h"
-#include "display.h"
-
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -41,6 +40,8 @@ int main(void) {
 	initOscillator();
 	initInterrupts();
 	bulb_power_on();
+
+	colon_display(0xFF);
 
 	while (1) {
 		for (int i = 0; i < 6; i++) {
