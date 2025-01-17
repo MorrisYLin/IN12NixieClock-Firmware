@@ -41,8 +41,6 @@ int main(void) {
 	initInterrupts();
 	bulb_power_on();
 
-	colon_display(0xFF);
-
 	while (1) {
 		for (int i = 0; i < 6; i++) {
 			bulb_displayNumber(i, getDigit(i));
