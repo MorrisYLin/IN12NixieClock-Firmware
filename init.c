@@ -127,7 +127,7 @@ int initOscillator() {
 
 	HibernateEnableExpClk(32786); // The RTC oscillator on the devboard is 32.786 kHz
 
-	for (int i = 16000000; i != 0; i--) {
+	for (int i = 160000; i != 0; i--) {
 	}
 
 	HibernateClockConfig(HIBERNATE_OSC_LOWDRIVE);
@@ -143,27 +143,32 @@ extern void RTCHandler(void);
 int initInterrupts() {
 	// enabling peripherals
 //	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER7); // RTC on Timer 7
-//
-//	while (!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER7) // Wait for ready
-//	) {
+
+//	while (!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER7)) { // Wait for ready
 //	}
 
 	// timer configurations
-	SysTickPeriodSet(0x00ffffff); // full length
+//	SysTickPeriodSet(0x00ffffff); // full length
 //	TimerConfigure(TIMER7_BASE, TIMER_CFG_RTC);
 
 	// interrupt configurations
 //	TimerIntRegister(TIMER7_BASE, TIMER_BOTH, RTCHandler);
 
 	// interrupt enables
-	SysTickIntEnable();
+//	SysTickIntEnable();
 //	TimerIntEnable(TIMER7_BASE, TIMER_RTC_MATCH);
+	HibernateIntEnable(HIBERNATE_INT_RTC_MATCH_0);
 
 	// timer enables
-	SysTickEnable();
+//	SysTickEnable();
 //	TimerRTCEnable(TIMER7_BASE); // explicitly need RTC style of enable
 
 	// Processor interrupt enable
+	IntEnable(INT_HIBERNATE);
+
+	// Setting 1-second interrupt
+	uint32_t currentTime = HibernateRTCGet();
+	HibernateRTCMatchSet(0, currentTime + 1);
 
 	return 0;
 }

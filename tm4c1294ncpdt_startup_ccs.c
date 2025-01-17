@@ -125,7 +125,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // CAN0
     IntDefaultHandler,                      // CAN1
     IntDefaultHandler,                      // Ethernet
-    IntDefaultHandler,                      // Hibernate
+    RTCHandler,                      		// Hibernate
     IntDefaultHandler,                      // USB0
     IntDefaultHandler,                      // PWM Generator 3
     IntDefaultHandler,                      // uDMA Software Transfer
@@ -184,7 +184,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // LCD Controller 0
     IntDefaultHandler,                      // Timer 6 subtimer A
     IntDefaultHandler,                      // Timer 6 subtimer B
-    RTCHandler,                      		// Timer 7 subtimer A
+    IntDefaultHandler,                      		// Timer 7 subtimer A
     IntDefaultHandler,                      // Timer 7 subtimer B
     IntDefaultHandler,                      // I2C6 Master and Slave
     IntDefaultHandler,                      // I2C7 Master and Slave

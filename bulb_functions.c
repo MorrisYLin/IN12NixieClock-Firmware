@@ -31,3 +31,15 @@ int bulb_displayNumber(uint8_t bulbNum, uint8_t displayNum) {
 
 	return 0;
 }
+
+void colon_display(uint8_t colon) {
+	//ADD IN PORTS PIN CONFIG FOR COLON PINS
+}
+
+int displayNumber(uint32_t num) {
+	for (int i = 0; i < 6; i++) {
+		bulb_displayNumber(i, num % 10);
+		num /= 10;
+	}
+	return 0;
+}
