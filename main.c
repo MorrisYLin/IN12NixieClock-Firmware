@@ -13,7 +13,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/hibernate.h"
-#include "inc/uart.h"
+#include "driverlib/uart.h"
 
 //*****************************************************************************
 //
@@ -33,7 +33,9 @@ __error__(char *pcFilename, uint32_t ui32Line)
 // main loop and initialization code
 //
 //*****************************************************************************
+extern
 
+void UARTHandler(void);
 
 int main(void) {
 	// Port and power initialization
@@ -98,4 +100,9 @@ void SysTickHandler(void) {
 	static uint8_t light = 0xFF;
 	GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, light);
 	light = ~light;
+}
+
+void UARTHandler(void) {
+	static int count = 0;
+	count++;
 }
